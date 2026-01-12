@@ -14,11 +14,13 @@ class ImageGeneratorDoubaoSeedreamYunwuAPI:
         self,
         api_key: str,
         model: str = "doubao-seedream-4-0-250828",
-
+        base_url: str = "https://ark.cn-beijing.volces.com/api/v3/images/generations",
+        rate_limiter=None,
     ):
         self.api_key = api_key
-        self.base_url = "https://yunwu.ai/v1/images/generations"
+        self.base_url = base_url
         self.model = model
+        self.rate_limiter = rate_limiter
 
 
     @retry(stop=stop_after_attempt(3), after=after_func)

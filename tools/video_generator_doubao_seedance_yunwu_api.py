@@ -13,11 +13,15 @@ class VideoGeneratorDoubaoSeedanceYunwuAPI:
         t2v_model: str = "doubao-seedance-1-0-lite-t2v-250428",
         ff2v_model: str = "doubao-seedance-1-0-lite-i2v-250428",
         flf2v_model: str = "doubao-seedance-1-0-lite-i2v-250428",
+        base_url: str = "https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks",
+        rate_limiter=None,
     ):
         self.api_key = api_key
         self.t2v_model = t2v_model
         self.ff2v_model = ff2v_model
         self.flf2v_model = flf2v_model
+        self.base_url = base_url
+        self.rate_limiter = rate_limiter
 
 
     async def create_video_generation_task(
@@ -50,7 +54,7 @@ class VideoGeneratorDoubaoSeedanceYunwuAPI:
 
         logging.info(f"Calling {model} to generate video...")
 
-        url = "https://yunwu.ai/volc/v1/contents/generations/tasks"
+        url = self.base_url
 
 
         content = [
@@ -119,7 +123,7 @@ class VideoGeneratorDoubaoSeedanceYunwuAPI:
         Returns:
             Video URL string
         """
-        url = f"https://yunwu.ai/volc/v1/contents/generations/tasks/{task_id}"
+        url = f"{self.base_url}/{task_id}"
         headers = {
             'Authorization': f'Bearer {self.api_key}',
         }

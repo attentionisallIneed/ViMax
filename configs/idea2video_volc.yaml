@@ -4,7 +4,6 @@ chat_model:
     model_provider: openai
     api_key: f60ed7c4-1e3f-468e-b00f-bcbe6db25e9d
     base_url: https://ark.cn-beijing.volces.com/api/v3
-  # Rate limits for chat model API calls
   max_requests_per_minute: 60
   max_requests_per_day: 1000
 
@@ -12,16 +11,18 @@ image_generator:
   class_path: tools.ImageGeneratorDoubaoSeedreamYunwuAPI
   init_args:
     api_key: f60ed7c4-1e3f-468e-b00f-bcbe6db25e9d
-  # Rate limits for image generation API calls
+    model: ep-20260112141126-clsbr
   max_requests_per_minute: 20
-  max_requests_per_day: 20
+  max_requests_per_day: 500
 
 video_generator:
   class_path: tools.VideoGeneratorDoubaoSeedanceYunwuAPI
   init_args:
     api_key: f60ed7c4-1e3f-468e-b00f-bcbe6db25e9d
-  # Rate limits for video generation API calls
+    t2v_model: ep-20260112141853-4qfnf
+    ff2v_model: ep-20260112143556-wxdw6
+    flf2v_model: ep-20260112143556-wxdw6
   max_requests_per_minute: 20
-  max_requests_per_day: 10
+  max_requests_per_day: 500
 
-working_dir: .working_dir/idea2video
+working_dir: .working_dir/idea2video_volc
