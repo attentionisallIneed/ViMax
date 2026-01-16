@@ -146,7 +146,7 @@ class VideoGeneratorDoubaoSeedanceYunwuAPI:
                 break
             elif status == "failed":
                 logging.error(f"Video generation failed. Response: {response_json}")
-                raise ValueError("Video generation failed.")
+                raise ValueError(f"Video generation failed: {response_json}")
             else:
                 logging.info(f"Video generation is still in progress. Checking again in 2 seconds...")
                 await asyncio.sleep(2)

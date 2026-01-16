@@ -26,7 +26,7 @@ style = "Anime Style"
 
 
 async def main():
-    pipeline = Script2VideoPipeline.init_from_config(config_path="configs/script2video.yaml")
+    pipeline = Script2VideoPipeline.init_from_config(config_path="configs/script2video_volc.yaml")
     await pipeline(script=script, user_requirement=user_requirement, style=style)
 
 
