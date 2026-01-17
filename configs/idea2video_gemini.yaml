@@ -17,10 +17,13 @@ image_generator:
   max_requests_per_day: 500
 
 video_generator:
-  class_path: tools.VideoGeneratorVeoGoogleAPI
+  class_path: tools.VideoGeneratorDoubaoSeedanceYunwuAPI
   init_args:
-    api_key: AIzaSyB0f3v06E0cClck6VZ7EazrAL9TOX6J4Ps
-  max_requests_per_minute: 2
-  max_requests_per_day: 50
+    api_key: f60ed7c4-1e3f-468e-b00f-bcbe6db25e9d
+    t2v_model: ep-20260116195359-29s4r
+    ff2v_model: ep-20260116195359-29s4r
+    flf2v_model: ep-20260116195359-29s4r
+  max_requests_per_minute: 20
+  max_requests_per_day: 500
 
-working_dir: .working_dir/idea2video_gemini
+working_dir: .working_dir/0117

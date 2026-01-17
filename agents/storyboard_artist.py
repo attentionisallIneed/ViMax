@@ -91,6 +91,12 @@ Additionally, you will receive a sequence of potential characters, each containi
 [Output]
 {format_instructions}
 
+[IMPORTANT]
+You must return a valid JSON object that matches the schema defined above. 
+DO NOT return the JSON schema itself (e.g., do not return {{"properties": ...}}).
+DO NOT wrap the output in markdown code blocks.
+Start the response with '{{' and end with '}}'.
+
 [Guidelines]
 - Ensure all output values (except keys) match the language used in the script.
 - Ensure the first and last frame descriptions are pure "snapshots," containing no ongoing actions (e.g., "He is about to stand up" is unacceptable; it should be "He is sitting on the chair, leaning slightly forward").

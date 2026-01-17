@@ -8,6 +8,26 @@ from langchain.chat_models import init_chat_model
 from utils.image import image_path_to_b64
 
 from utils.retry import after_func
+import json
+import re
+from langchain_core.runnables import RunnableLambda
+
+def fix_json_content(msg):
+    content = msg.content if hasattr(msg, "content") else msg
+    try:
+        # Clean up code blocks if present
+        json_str = content.strip()
+        if "```json" in json_str:
+            json_str = json_str.split("```json")[1].split("```")[0].strip()
+        elif "```" in json_str:
+            json_str = json_str.split("```")[1].split("```")[0].strip()
+            
+        data = json.loads(json_str)
+        if "properties" in data and "ref_image_indices" in data["properties"]:
+            return json.dumps(data["properties"])
+    except Exception:
+        pass
+    return msg
 
 system_prompt_template_select_reference_images_only_text = \
 """
@@ -174,7 +194,7 @@ class ReferenceImageSelector:
                 HumanMessage(content=human_content)
             ]
 
-            chain = self.chat_model | parser
+            chain = self.chat_model | RunnableLambda(fix_json_content) | parser
 
             try:
                 ref = await chain.ainvoke(messages)
@@ -208,7 +228,7 @@ class ReferenceImageSelector:
             HumanMessage(content=human_content)
         ]
 
-        chain = self.chat_model | parser
+        chain = self.chat_model | RunnableLambda(fix_json_content) | parser
 
         try:
             response = await chain.ainvoke(messages)        

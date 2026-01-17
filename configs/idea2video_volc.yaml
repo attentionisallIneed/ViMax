@@ -19,10 +19,13 @@ video_generator:
   class_path: tools.VideoGeneratorDoubaoSeedanceYunwuAPI
   init_args:
     api_key: f60ed7c4-1e3f-468e-b00f-bcbe6db25e9d
-    t2v_model: ep-20260112141853-4qfnf
-    ff2v_model: ep-20260112143556-wxdw6
-    flf2v_model: ep-20260112143556-wxdw6
+    # t2v_model: ep-20260112141853-4qfnf
+    t2v_model: ep-20260116195359-29s4r
+    # ff2v_model: ep-20260112143556-wxdw6
+    ff2v_model: ep-20260116195359-29s4r
+    # flf2v_model: ep-20260112143556-wxdw6
+    flf2v_model: ep-20260116195359-29s4r
   max_requests_per_minute: 20
   max_requests_per_day: 500
 
-working_dir: .working_dir/Soviet
+working_dir: .working_dir/0117

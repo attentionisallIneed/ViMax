@@ -228,8 +228,20 @@ class Script2VideoPipeline:
                     print(f"⚠️ Video for shot {shot_description.idx} not found, skipping.")
             
             if video_clips:
-                final_video = concatenate_videoclips(video_clips)
-                final_video.write_videofile(final_video_path, codec="libx264", preset="medium")
+                # Resize all clips to 720p to ensure consistency and avoid corruption
+                video_clips = [clip.resized((1280, 720)) for clip in video_clips]
+                
+                # Use method="compose" for better handling of different formats
+                final_video = concatenate_videoclips(video_clips, method="compose")
+                
+                # Explicitly set fps and audio codec
+                final_video.write_videofile(
+                    final_video_path, 
+                    codec="libx264", 
+                    audio_codec="aac", 
+                    fps=24,
+                    preset="medium"
+                )
                 print(f"☑️ Concatenated videos, saved to {final_video_path}.")
             else:
                 print(f"⚠️ No videos found to concatenate.")

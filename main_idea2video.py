@@ -1,21 +1,28 @@
 import asyncio
+import os
+
+# Set NO_PROXY to avoid 502 errors with local services
+os.environ["NO_PROXY"] = "127.0.0.1,localhost"
+
 from pipelines.idea2video_pipeline import Idea2VideoPipeline
 
 
 # SET YOUR OWN IDEA, USER REQUIREMENT, AND STYLE HERE
 idea = \
     """
-拍摄一个苏联笑话的视频，这个笑话讲的是：
-在苏联，一位外国人问一个苏联公民：“你们这里言论自由吗？”
-苏联人回答：“当然自由！我们可以随便批评美国总统、英国首相、法国总统……想怎么骂就怎么骂！”
-外国人惊讶：“那你们能批评苏联领导人吗？”
-苏联人立刻压低声音：“嘘！你疯了？我们这儿可没有那么自由！”
-"""
+    一个少女下雨的城市霓虹下行走，然后坐在积水的路边，打开一罐冷饮。
+    当她抬头的时候，看到远处的广告牌亮起，上面跳出一行字：“鱼鱼，加油！”
+    少女受到鼓舞，欣慰的笑了。镜头特写，她的眼里浮现出泪光。
+    """
 user_requirement = \
     """
-幽默诙谐，场景在苏联街头，有苏联特色的建筑和服装
-"""
-style = "Soviet-style, colorful and high quality"
+    赛博朋克风格 (Cyberpunk style)。
+    环境：雨夜，充满霓虹灯光的街道，潮湿的路面反射着彩色光芒，远处有全息广告牌。
+    人物：少女，衣着现代或带有未来感。
+    氛围：孤独但随后感到温暖和希望。
+    画面：电影质感，高清晰度，光影效果丰富。
+    """
+style = "Cyberpunk Style, Neon Lights, Rainy City, Cinematic Lighting, High Quality"
 
 
 async def main():

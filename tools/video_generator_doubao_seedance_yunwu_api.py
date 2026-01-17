@@ -86,7 +86,8 @@ class VideoGeneratorDoubaoSeedanceYunwuAPI:
 
         payload = {
             "model": model,
-            "content": content
+            "content": content,
+            "generate_audio": True
         }
 
         headers = {
@@ -102,7 +103,10 @@ class VideoGeneratorDoubaoSeedanceYunwuAPI:
                         logging.debug(f"Response: {response_json}")
                         task_id = response_json["id"]
             except Exception as e:
-                logging.error(f"Error occurred while creating video generation task.\nRetrying in 1 seconds...")
+                logging.error(f"Error occurred while creating video generation task: {e}")
+                if 'response_json' in locals():
+                    logging.error(f"Response JSON: {response_json}")
+                logging.error("Retrying in 1 seconds...")
                 await asyncio.sleep(1)
                 continue
             break
